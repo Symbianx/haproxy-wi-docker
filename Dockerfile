@@ -15,7 +15,6 @@ RUN yum -y install git nmap-ncat python34 dos2unix python34-pip  yum-plugin-remo
 	pip3 install -r /var/www/haproxy-wi/requirements.txt --no-cache-dir && \
 	chmod +x /var/www/haproxy-wi/app/*.py && \
 	chmod +x /var/www/haproxy-wi/app/tools/*.py && \
-	chown -R apache:apache /var/www/haproxy-wi/ && \
 	chown -R apache:apache /var/log/httpd/ && \
 	yum -y erase git python34-pip python34-devel gcc-c++  gcc-gfortran gcc --remove-leaves && \
 	yum -y autoremove yum-plugin-remove-with-leaves && \
@@ -23,7 +22,8 @@ RUN yum -y install git nmap-ncat python34 dos2unix python34-pip  yum-plugin-remo
 	rm -rf /var/cache/yum && \
 	rm -f /etc/yum.repos.d/* && \
 	cd /var/www/haproxy-wi/app &&\
-	./update_db.py 
+	./update_db.py && \
+	chown -R apache:apache /var/www/haproxy-wi/ 
 	
 EXPOSE 80
 VOLUME /var/www/haproxy-wi/
