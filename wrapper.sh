@@ -7,15 +7,15 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
-cd /var/www/haproxy-wi
-app/tools/metrics_master.py &
+cd /var/www/haproxy-wi/app
+tools/metrics_master.py &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Metrics HAProxy: $status"
   exit $status
 fi
 
-app/tools/chcker_master.py &
+tools/chcker_master.py &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Chcker HAProxy: $status"
