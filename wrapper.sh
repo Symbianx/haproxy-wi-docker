@@ -7,14 +7,15 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
-systemctl start metrics_haproxy.service 
+cd /var/www/haproxy-wi
+app/tools/metrics_master.py &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Metrics HAProxy: $status"
   exit $status
 fi
 
-systemctl start chcker_haproxy.service 
+app/tools/chcker_master.py &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Chcker HAProxy: $status"
