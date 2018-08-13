@@ -6,6 +6,7 @@ COPY epel.repo /etc/yum.repos.d/epel.repo
 RUN yum -y install httpd 
 
 COPY haproxy-wi.conf /etc/httpd/conf.d/haproxy-wi.conf
+COPY wrapper.sh /wrapper.sh
 
 RUN yum -y install git nmap-ncat python34 dos2unix python34-pip  yum-plugin-remove-with-leaves svn gcc-c++ gcc gcc-gfortran python34-devel && \
 	git clone https://github.com/Aidaho12/haproxy-wi.git /var/www/haproxy-wi && \
@@ -28,4 +29,4 @@ RUN yum -y install git nmap-ncat python34 dos2unix python34-pip  yum-plugin-remo
 EXPOSE 80
 VOLUME /var/www/haproxy-wi/
 
-CMD /usr/sbin/httpd -DFOREGROUND
+CMD /wrapper.sh
