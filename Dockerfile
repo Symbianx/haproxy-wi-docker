@@ -24,7 +24,7 @@ RUN yum -y install git nmap-ncat python34 dos2unix python34-pip  yum-plugin-remo
 	rm -rf /var/cache/yum && \
 	rm -f /etc/yum.repos.d/* && \
 	cd /var/www/haproxy-wi/app &&\
-	./update_db.py && \
+	./create_db.py && \
 	chown -R apache:apache /var/www/haproxy-wi/ 
 	
 EXPOSE 80

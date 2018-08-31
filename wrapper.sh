@@ -15,7 +15,7 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
-tools/chcker_master.py &
+tools/checker_master.py &
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start Chcker HAProxy: $status"
