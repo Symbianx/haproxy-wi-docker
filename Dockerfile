@@ -16,14 +16,16 @@ RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm && \
         chmod +x /var/www/haproxy-wi/app/tools/*.py && \
         chmod +x /wrapper.sh && \
         chown -R apache:apache /var/log/httpd/ && \
-        yum -y erase git gcc-c++  gcc-gfortran gcc --remove-leaves && \
+        yum -y erase git python35u-pip gcc-c++  gcc-gfortran gcc --remove-leaves && \
         yum -y autoremove yum-plugin-remove-with-leaves && \
         yum clean all && \
         rm -rf /var/cache/yum && \
         rm -f /etc/yum.repos.d/* && \
         cd /var/www/haproxy-wi/app &&\
         ./create_db.py && \
-        chown -R apache:apache /var/www/haproxy-wi/ 
+        chown -R apache:apache /var/www/haproxy-wi/  && \
+		rm -f /usr/bin/python3 && \
+		ln -s /usr/bin/python3.5 /usr/bin/python3
 
 EXPOSE 80
 VOLUME /var/www/haproxy-wi/
